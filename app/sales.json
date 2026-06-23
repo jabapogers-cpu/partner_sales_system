@@ -1,0 +1,26 @@
+[{
+    "sale_id": 1,
+    "company_name": "Фудзияма",
+    "sale_name": "Сет за 999",
+    "date_of_add": "2026-06-23",
+    "category": "food",
+    "how_to_get": "'Гранд Ультрасет' 2 кг за 1499 рублей (вместо 3349 рублей).",
+    "sale_period": "с 1 июня — 30 июня",
+    "about_partner": "Компания Фудзияма - это сеть ресторанов суши. ",
+    "promo": "sale2020",
+    "address": "https://sushifuji.ru/ufa/#action_9925"
+  },
+{
+    "sale_id": 2,
+    "company_name": "Brandshop",
+    "sale_name": "Скидка 5%",
+    "date_of_add": "2026-06-22",
+    "category": "clothes",
+    "how_to_get": "Используя промокод \"БРЕНДШОП\" получите скидку 5% на один заказ.",
+    "sale_period": "с 1 июня — 30 июня",
+    "about_partner": "BRANDSHOP — мультибрендовый магазин одежды, обуви и аксессуаров.",
+    "promo": "БРЕНДШОП",
+    "address": "https://brandshop.ru/"
+  }
+]
+
