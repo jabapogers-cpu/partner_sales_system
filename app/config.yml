@@ -1,0 +1,34 @@
+listener:
+  slotName: wal_listener_slot
+  refreshConnection: 30s
+  heartbeatInterval: 10s
+  filter:
+    tables:
+      sales:
+        - insert
+        - update
+        - delete
+  topicsMap:
+    schema_table_name: "sales"
+
+logger:
+  level: info
+  fmt: json
+
+database:
+  host: host.docker.internal
+  port: 5432
+  name: sales_db
+  user: postgres
+  password: 112233
+  debug: false
+
+publisher:
+  type: kafka
+  address: kafka:9092
+  topic: "wal_listener_events"
+  topicPrefix: ""
+  # messageKeyFrom: "id"   # опционально: поле таблицы, из которого брать ключ сообщения (для партиционирования)
+
+monitoring:
+  promAddr: ":2112"

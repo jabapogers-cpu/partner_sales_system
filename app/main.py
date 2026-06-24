@@ -1,4 +1,7 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from database import SessionLocal
 from models import Sale
@@ -7,6 +10,9 @@ import os
 
 app = FastAPI()
 
+
+templates = Jinja2Templates(directory="templates")
+
 def get_db():
     db = SessionLocal()
     try:
@@ -14,11 +20,6 @@ def get_db():
     finally:
         db.close()
 
-
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
 
 @app.get("/sales/category/{category}")
 def read_category(category: str, db: Session = Depends(get_db)):
@@ -46,8 +47,4 @@ def get_all_sales(db: Session = Depends(get_db)):
         "categories": categories,
         "sales": sales
     }
-
-# путь к json
-path_to_json = os.path.join(os.path.dirname(__file__), 'sales.json')
-
 
