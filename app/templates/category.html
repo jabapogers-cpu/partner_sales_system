@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ category }}</title>
+<link rel="stylesheet" href="/static/sales.css">
+</head>
+<body>
+
+  <a class="back-link" href="/sales">&larr; Все категории</a>
+
+  <h2 style="text-align:center;">{{ category }}</h2>
+
+  <div class="offers">
+    {% for sale in sales %}
+    <div class="offer">
+      <h3>{{ sale.sale_name }}</h3>
+      <p><b>{{ sale.company_name }}</b></p>
+      <p>Срок: {{ sale.sale_period }}</p>
+      <p>Как получить: {{ sale.how_to_get }}</p>
+      {% if sale.promo %}
+      <p>Промокод: {{ sale.promo }}</p>
+      {% endif %}
+      <p>Адрес: {{ sale.address }}</p>
+      {% if sale.about_partner %}
+      <p>{{ sale.about_partner }}</p>
+      {% endif %}
+    </div>
+    {% else %}
+    <p style="text-align:center;">В этой категории пока нет акций.</p>
+    {% endfor %}
+  </div>
+
+</body>
+</html>
