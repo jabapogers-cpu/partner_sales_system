@@ -1,0 +1,61 @@
+body {
+  font-family: "Times New Roman", Times, serif;
+  background: #ffffff;
+  color: #000000;
+  margin: 20px;
+}
+
+a {
+  color: #000000;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 700px;
+  margin: 0 auto 30px auto;
+}
+
+.card {
+  display: block;
+  border: 1px solid #000000;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.card-new {
+  font-weight: bold;
+}
+
+hr {
+  max-width: 700px;
+  margin: 30px auto;
+}
+
+.offers {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.offer {
+  border: 1px solid #000000;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.offer h3 {
+  margin: 0 0 5px 0;
+}
+
+.offer p {
+  margin: 4px 0;
+}
+
+.back-link {
+  display: block;
+  max-width: 700px;
+  margin: 0 auto 20px auto;
+}
