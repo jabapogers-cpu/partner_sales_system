@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Акции</title>
+<link rel="stylesheet" href="/static/sales.css">
+</head>
+<body>
+
+  <div class="grid">
+    <a class="card card-new" href="/sales/new">Новые ({{ new_count }})</a>
+    {% for category, count in categories.items() %}
+    <a class="card" href="/sales/category/{{ category | urlencode }}">{{ category }} ({{ count }})</a>
+    {% endfor %}
+  </div>
+
+  <hr>
+
+  <div class="offers">
+    {% for sale in sales %}
+    <div class="offer">
+      <h3>{{ sale.sale_name }}</h3>
+      <p><b>{{ sale.company_name }}</b> &mdash; {{ sale.category }}</p>
+      <p>Срок: {{ sale.sale_period }}</p>
+      <p>Как получить: {{ sale.how_to_get }}</p>
+      {% if sale.promo %}
+      <p>Промокод: {{ sale.promo }}</p>
+      {% endif %}
+      <p>Адрес: {{ sale.address }}</p>
+      {% if sale.about_partner %}
+      <p>{{ sale.about_partner }}</p>
+      {% endif %}
+    </div>
+    {% else %}
+    <p>Пока нет акций.</p>
+    {% endfor %}
+  </div>
+
+</body>
+</html>
