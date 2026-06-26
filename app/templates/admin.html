@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Админка</title>
+<link rel="stylesheet" href="/static/sales.css">
+</head>
+<body>
+
+  <h2 style="text-align:center;">Добавить акцию</h2>
+
+  {% if success %}
+  <p class="message message-ok">Запись добавлена! ID: {{ success }}</p>
+  {% endif %}
+  {% if error %}
+  <p class="message message-error">Ошибка: {{ error }}</p>
+  {% endif %}
+
+  <form class="admin-form" method="post" action="/admin">
+
+    <label for="company_name">Название вашей компании</label>
+    <input type="text" id="company_name" name="company_name" required>
+
+    <label for="sale_name">Название акции</label>
+    <input type="text" id="sale_name" name="sale_name" required>
+
+    <label for="category">Категория</label>
+    <select id="category" name="category" required>
+      <option value="food">Еда</option>
+      <option value="beauty" selected>Красота и здоровье</option>
+      <option value="clothes">Одежда и аксессуары</option>
+      <option value="auto">Автомобили</option>
+    </select>
+
+    <label for="how_to_get">Условия получения / использования вашей акции</label>
+    <textarea id="how_to_get" name="how_to_get" required></textarea>
+
+    <label for="sale_period">Срок действия вашей акции (до какого числа)</label>
+    <input type="date" id="sale_period" name="sale_period" required>
+
+    <label for="about_partner">Информация о вашей компании</label>
+    <textarea id="about_partner" name="about_partner" required></textarea>
+
+    <label for="promo">Промокод</label>
+    <input type="text" id="promo" name="promo" required>
+
+    <label for="address">Ссылка на сайт проведения акции</label>
+    <input type="text" id="address" name="address" required>
+
+    <button type="submit">Добавить</button>
+
+  </form>
+
+</body>
+</html>
