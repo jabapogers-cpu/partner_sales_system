@@ -19,19 +19,10 @@
 
   <div class="offers">
     {% for sale in sales %}
-    <div class="offer">
+    <a class="offer" href="/sales/offer/{{ sale.id }}">
       <h3>{{ sale.sale_name }}</h3>
       <p><b>{{ sale.company_name }}</b> &mdash; {{ sale.category }}</p>
-      <p>Срок: {{ sale.sale_period }}</p>
-      <p>Как получить: {{ sale.how_to_get }}</p>
-      {% if sale.promo %}
-      <p>Промокод: {{ sale.promo }}</p>
-      {% endif %}
-      <p>Адрес: {{ sale.address }}</p>
-      {% if sale.about_partner %}
-      <p>{{ sale.about_partner }}</p>
-      {% endif %}
-    </div>
+    </a>
     {% else %}
     <p>Пока нет акций.</p>
     {% endfor %}
