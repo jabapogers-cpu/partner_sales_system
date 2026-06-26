@@ -6,12 +6,25 @@ import threading
 
 bot = telebot.TeleBot("8775693148:AAFc4TaVQSpzYwHduMv7bqw6KHU6G1umTe0")
 
-def kafka_listener():
+def kafka_listener_format(event: dict) -> str:
+    """
+
+    :rtype: str
+    """
+    action = event.get("action", "").lower()
+    table = event.get("table")
+    event_time = event.get("commitTime")
+    data = event.get("data", {})
+
+    if action == "insert":
+        return f"[{event_time}] {action.upper()} в таблице {table}\nДанные: {data}"
+
+
+def kafka_listener() -> None:
     """
     Читает обновления в Кафке
     выводит в консоль данные
     отпровляет сообщение об изменении в чат 814799097
-
     """
     consumer = KafkaConsumer(
         "wal_listener_events.public_sales",
@@ -22,19 +35,10 @@ def kafka_listener():
         value_deserializer=lambda v: json.loads(v.decode("utf-8")),
     )
 
-
-
     for message in consumer:
         event = message.value
-
-        action = event.get("action", "").lower()
-        table = event.get("table")
-        event_time = event.get("commitTime")
-        data = event.get("data", {})
-
-        if action == "insert":
-            text = f"[{event_time}] {action.upper()} в таблице {table}\nДанные: {data}"
-            bot.send_message(814799097, text)
+        text = kafka_listener_format(event)
+        bot.send_message(814799097, text)
 
 
 @bot.message_handler(commands=["start"])

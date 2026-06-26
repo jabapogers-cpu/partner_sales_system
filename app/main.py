@@ -5,7 +5,6 @@ from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from database import SessionLocal
 from models import Sale
-from utils import date_today
 from datetime import date
 import os
 
@@ -31,7 +30,7 @@ def sales_page(request: Request, db: Session = Depends(get_db)):
     for sale in sales:
         categories[sale.category] = categories.get(sale.category, 0) + 1
 
-    today = date_today()
+    today = str(date.today())
     new_count = sum(1 for sale in sales if sale.date_of_add == today)
 
     return templates.TemplateResponse(
@@ -47,7 +46,7 @@ def sales_page(request: Request, db: Session = Depends(get_db)):
 
 @app.get("/sales/new", response_class=HTMLResponse)
 def new_sales_page(request: Request, db: Session = Depends(get_db)):
-    today = date_today()
+    today = str(date.today())
     sales = db.query(Sale).filter(Sale.date_of_add == today).all()
 
     return templates.TemplateResponse(
