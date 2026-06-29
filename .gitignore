@@ -1,0 +1,39 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+build/
+dist/
+
+# --- Виртуальное окружение ---
+.venv/
+venv/
+env/
+
+# --- Тесты и покрытие ---
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- IDE ---
+.idea/
+.vscode/
+
+# --- Секреты ---
+.env
+configtg.py
+
+# --- Данные Postgres из Docker volume (если лежат внутри проекта) ---
+app/postgres_data/
+postgres_data/
+
+# --- Локальные SQLite-базы (если где-то использовались для теста) ---
+*.db
+*.sqlite3
+
+# --- OS-мусор ---
+.DS_Store
+Thumbs.db

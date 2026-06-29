@@ -8,3 +8,10 @@ DATABASE_URL = "postgresql://postgres:112233@localhost:5432/sales_db"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(bind=engine)
 Base = declarative_base()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

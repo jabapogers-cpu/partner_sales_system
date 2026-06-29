@@ -2,9 +2,11 @@ from kafka import KafkaConsumer
 import json
 import telebot
 import threading
+import configtg
 
+token = configtg.token
+bot = telebot.TeleBot(token)
 
-bot = telebot.TeleBot("")
 def kafka_listener_format(event: dict) -> str:
     """
 
@@ -37,7 +39,8 @@ def kafka_listener() -> None:
     for message in consumer:
         event = message.value
         text = kafka_listener_format(event)
-        bot.send_message(814799097, text)
+        if text:
+            bot.send_message(814799097, text)
 
 
 @bot.message_handler(commands=["start"])
