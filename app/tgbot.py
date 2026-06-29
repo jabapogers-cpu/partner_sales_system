@@ -4,7 +4,7 @@ import telebot
 import threading
 
 
-bot = telebot.TeleBot("8775693148:AAFc4TaVQSpzYwHduMv7bqw6KHU6G1umTe0")
+bot = telebot.TeleBot("")
 
 def kafka_listener_format(event: dict) -> str:
     """
