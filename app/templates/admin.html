@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Админка</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="/static/sales.css">
+
 </head>
 <body>
 
@@ -14,7 +14,7 @@
   <h2 style="text-align:center;">Добавить акцию</h2>
 
   {% if success %}
-  <div class="container" style="max-width: 600px;">
+  <div class="container" style="max-width: 600px ">
         <div class="alert alert-success" role="alert">
           <h4 class="alert-heading">Запись добавлена!</h4>
           <p>Вы успешно добавили свою акцию. Номер в таблице: {{ success }}</p>
@@ -25,7 +25,7 @@
   {% if error %}
   <p class="message message-error">Ошибка: {{ error }}</p>
   {% endif %}
-
+<div class="container" style="max-width: 600px ">
   <form class="admin-form" method="post" action="/admin">
     <label for="company_name">Название вашей компании</label>
     <div class="mb-3">
@@ -42,11 +42,10 @@
     <div class="mb-3">
             <label for="category" class="form-label">Категория</label>
             <select class="form-select form-select-lg" id="category" name="category" required>
-              <option selected="">Выберите категорию</option>
-              <option value="food">Еда</option>
-              <option value="beauty">Красота и здоровье</option>
-              <option value="clothes">Одежда и аксессуары</option>
-              <option value="auto">Автомобили</option>
+              <option selected="Еда">Еда</option>
+              <option value="Красота и здоровье">Красота и здоровье</option>
+              <option value="Одежда и аксессуары">Одежда и аксессуары</option>
+              <option value="Автомобили">Автомобили</option>
             </select>
           </div>
 
@@ -79,10 +78,10 @@
           <input class="form-control form-control-lg" type="text" id="address" name="address" required placeholder="Введите ссылку на сайт" aria-label=".form-control-lg example">
     </div>
 
+    <button type="submit" class="btn btn-primary btn-lg">Добавить</button>
 
-    <button type="submit">Добавить</button>
 
   </form>
-
+</div>
 </body>
 </html>
