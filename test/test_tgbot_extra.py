@@ -14,7 +14,7 @@ class TestKafkaListenerFormat:
             "data": {
                 "about_partner": "123",
                 "address": "123",
-                "category": "food",
+                "category": "Еда",
                 "company_name": "123",
                 "date_of_add": "2026-06-26",
                 "how_to_get": "123",
@@ -27,7 +27,7 @@ class TestKafkaListenerFormat:
             "commitTime": "2026-06-26T08:20:07.704761Z"
         })
 
-        expected = "[2026-06-26T08:20:07.704761Z] INSERT в таблице sales\nДанные: {'about_partner': '123', 'address': '123', 'category': 'food', 'company_name': '123', 'date_of_add': '2026-06-26', 'how_to_get': '123', 'id': 57, 'promo': '123', 'sale_name': '123', 'sale_period': '1111-11-11'}"
+        expected = "[2026-06-26T08:20:07.704761Z] INSERT в таблице sales\nДанные: {'about_partner': '123', 'address': '123', 'category': 'Еда', 'company_name': '123', 'date_of_add': '2026-06-26', 'how_to_get': '123', 'id': 57, 'promo': '123', 'sale_name': '123', 'sale_period': '1111-11-11'}"
         assert result == expected
 
         # ВТОРОЙ ТЕСТ: UPDATE (ожидаем None)
@@ -39,7 +39,7 @@ class TestKafkaListenerFormat:
             "data": {
                 "about_partner": "123",
                 "address": "123",
-                "category": "food",
+                "category": "Еда",
                 "company_name": "123",
                 "date_of_add": "2026-06-26",
                 "how_to_get": "123",

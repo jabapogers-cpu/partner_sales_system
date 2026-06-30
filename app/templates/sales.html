@@ -9,7 +9,7 @@
 
 </head>
 <body>
-<div class="container" style="max-width: 800px;">
+<div class="container" style="max-width: 700px;">
   <div class="container px-4 py-5" id="categories">
     <h1 class="pb-2 border-bottom">Скидки от партнеров</h1>
 
@@ -20,7 +20,7 @@
           <div class="d-flex flex-column h-100 p-5 pb-3 text-blacktext-shadow-1">
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Новые</h3>
             <ul class="d-flex list-unstyled mt-auto">
-                <h3>Предложений: {{ new_count }}</h3>
+                <h4>Предложений: {{ new_count }}</h4>
             </ul>
           </div>
         </div>
@@ -33,7 +33,7 @@
           <div class="d-flex flex-column h-100 p-5 pb-3 text-blacktext-shadow-1">
             <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{ category }}</h3>
             <ul class="d-flex list-unstyled mt-auto">
-                <h3>Предложений: {{ count }}</h3>
+                <h4>Предложений: {{ count }}</h4>
             </ul>
           </div>
         </div>
@@ -44,14 +44,14 @@
   </div>
 </div>
 
-<div class="container" style="max-width: 800px;">
+<div class="container" style="max-width: 700px;">
   <div class="container px-4 py-5" id="all_sales">
     <h1 class="pb-2 border-bottom">Предложения</h1>
 
     <div class="row row-cols-1 row-cols-lg-1 align-items-stretch g-4 py-5">
 
       {% for sale in sales %}
-      <a href="sales/offer/{{ sale.id }}" class="text-decoration-none">
+      <a href="sales/offer/{{sale.id}}" class="text-decoration-none">
       <div class="col">
         <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-5 shadow-lg">
           <div class="d-flex flex-column h-100 p-5 pb-3 text-blacktext-shadow-1">
@@ -61,6 +61,8 @@
         </div>
       </div>
       </a>
+      {% else %}
+    <p>Пока нет акций.</p>
       {% endfor %}
     </div>
   </div>
@@ -69,3 +71,5 @@
 
 </body>
 </html>
+
+

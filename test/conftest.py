@@ -71,7 +71,7 @@ def make_sale(db_session):
             company_name="Фудзияма",
             sale_name="Сет за 1000р",
             date_of_add=str(date.today()),
-            category="food",
+            category="Еда",
             how_to_get="Продайте душу",
             sale_period=date.today() + timedelta(days=30),
             about_partner="Фудзияма суши",
