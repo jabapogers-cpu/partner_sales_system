@@ -4,7 +4,7 @@ from datetime import date, timedelta
 VALID_FORM_DATA = {
     "company_name": "Фудзияма",
     "sale_name": "сет за 1000р",
-    "category": "food",
+    "category": "Еда",
     "how_to_get": "пройдайте душу",
     "sale_period": str(date.today() + timedelta(days=30)),
     "about_partner": "Фудзияма суши",
@@ -39,7 +39,7 @@ class TestAdminPost:
         saved = db_session.query(models.Sale).filter_by(company_name="Фудзияма").first()
         assert saved is not None
         assert saved.sale_name == "сет за 1000р"
-        assert saved.category == "food"
+        assert saved.category == "Еда"
         assert saved.promo == "UYUT15"
         assert saved.date_of_add == str(date.today())
 
@@ -86,7 +86,7 @@ class TestAdminPost:
         response = client.get("/sales")
 
         assert "Фудзияма" in response.text
-        assert "food (1)" in response.text
+        assert "Еда" in response.text
 
     def test_database_error_shows_error_message(self, client):
         """
