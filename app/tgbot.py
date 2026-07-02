@@ -4,30 +4,32 @@ import telebot
 import threading
 import configtg
 
-token = configtg.token
-bot = telebot.TeleBot(token)
+token: str = configtg.token
+bot: telebot.TeleBot = telebot.TeleBot(token)
 
-def kafka_listener_format(event: dict) -> str:
-    """
 
-    :rtype: str
+def kafka_listener_format(event: dict) -> str | None:
     """
-    action = event.get("action", "").lower()
-    table = event.get("table")
-    event_time = event.get("commitTime")
-    data = event.get("data", {})
+    Форматирует событие из Kafka в текст для Telegram.
+    Возвращает строку для INSERT, None для прочих событий.
+    """
+    action: str = event.get("action", "").lower()
+    table: str | None = event.get("table")
+    event_time: str | None = event.get("commitTime")
+    data: dict = event.get("data", {})
 
     if action == "insert":
         return f"[{event_time}] {action.upper()} в таблице {table}\nДанные: {data}"
 
+    return None
+
 
 def kafka_listener() -> None:
     """
-    Читает обновления в Кафке
-    выводит в консоль данные
-    отпровляет сообщение об изменении в чат 814799097
+    Читает события из Kafka-топика и отправляет уведомления в Telegram.
+    Обрабатывает только INSERT-события; UPDATE/DELETE молча пропускаются.
     """
-    consumer = KafkaConsumer(
+    consumer: KafkaConsumer = KafkaConsumer(
         "wal_listener_events.public_sales",
         bootstrap_servers="127.0.0.1:9094",
         group_id="sales-consumer-group-v3",
@@ -37,15 +39,16 @@ def kafka_listener() -> None:
     )
 
     for message in consumer:
-        event = message.value
-        text = kafka_listener_format(event)
+        event: dict = message.value
+        text: str | None = kafka_listener_format(event)
         if text:
             bot.send_message(814799097, text)
 
 
 @bot.message_handler(commands=["start"])
-def start(message):
+def start(message: telebot.types.Message) -> None:
     bot.send_message(message.chat.id, "Бот запущен!")
+
 
 if __name__ == "__main__":
     threading.Thread(target=kafka_listener, daemon=True).start()
